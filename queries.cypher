@@ -1,8 +1,9 @@
-Zadatak 1:
+// Zadatak 1
 
 RETURN 'Neo4j radi!' AS poruka
 
-Zadatak 2:
+
+// Zadatak 2
 
 CREATE (f1:Film {naslov: 'Inception', godina: 2010, ocjena: 8.8, zanr: 'sci-fi'})
 CREATE (f2:Film {naslov: 'The Dark Knight', godina: 2008, ocjena: 9.0, zanr: 'akcija'})
@@ -18,8 +19,7 @@ MATCH (n)
 RETURN count(n)
 
 
-Zadatak 3:
-
+// Zadatak 3
 
 MATCH (o:Osoba {ime: 'Christopher Nolan'}),
       (f:Film {naslov: 'Inception'})
@@ -40,7 +40,8 @@ CREATE (a)-[:PRIJATELJ {od: 2010}]->(b)
 MATCH (n)-[r]->(m)
 RETURN n, r, m
 
-Zadatak 4:
+
+// Zadatak 4
 
 MATCH (f:Film)
 WHERE f.zanr = 'triler'
@@ -60,7 +61,8 @@ WITH o.ime AS redatelj, count(f) AS broj_filmova
 WHERE broj_filmova > 1
 RETURN redatelj, broj_filmova
 
-Zadatak 5:
+
+// Zadatak 5
 
 MATCH p = shortestPath(
   (a:Osoba {ime: 'Leonardo DiCaprio'})
@@ -78,7 +80,9 @@ RETURN EXISTS {
   MATCH (a)-[*1..4]-(b)
 } AS povezani
 
-Zadatak 6:
+
+// Zadatak 6
+
 MATCH (f:Film)
 RETURN count(f) AS broj_filmova,
 avg(f.ocjena) AS prosjecna_ocjena
@@ -93,8 +97,12 @@ MATCH (o:Osoba)-[:GLUMIO_U]->(f:Film)
 RETURN f.naslov,
 collect(o.ime) AS glumci
 
-Zadatak 7:
+
+// Zadatak 7
+
 CREATE INDEX film_ocjena FOR (f:Film) ON (f.ocjena)
+
+DROP INDEX film_naslov
 
 CREATE CONSTRAINT film_naslov_unique
 FOR (f:Film)
@@ -104,7 +112,8 @@ SHOW INDEXES
 
 SHOW CONSTRAINTS
 
-Zavrsni zadatak:
+
+// Završni zadatak
 
 MATCH (i:Izvodac {ime: 'Eminem'})-[:OBJAVIO]->(a:Album)
 RETURN a.naziv, a.godina
